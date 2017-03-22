@@ -18,3 +18,14 @@ def createPlot():
     plotNode('a decision node', (0.5, 0.1), (0.1, 0.5), decisionNode)
     plotNode('a leaf node', (0.8, 0.1), (0.3, 0.8), leafNode)
     plt.show()
+
+def getNumLeafs(myTree):
+    numLeafs = 0
+    firstStr = myTree.keys()[0]
+    secondDict = myTree[firstStr]
+    for key in secondDict.keys():
+        if type(secondDict[key]).__name__=='dict':
+            numLeafs += getNumLeafs(secondDict[key])
+        else:  numLeafs += 1
+
+    return numLeafs
